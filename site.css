@@ -1,0 +1,145 @@
+html,
+body {
+    background: green;
+    overflow: hidden;
+}
+
+#game-title {
+    font-family: 'Fira Sans', sans-serif;
+    width: fit-content;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 15vh;
+    color: beige;
+    z-index: 100;
+    background: transparent;
+    margin-top: 7.5vh;
+    background-color: green;
+    padding-left: 2%;
+    padding-right: 2%;
+    border: beige 0.65vw solid;
+    text-shadow: rgba(0, 0, 0, 0.555) 0.25vw 0.25vw 0;
+    text-shadow: rgba(0, 0, 0, 0.555) 0.3vw 0.3vw 0;
+    text-shadow: rgba(0, 0, 0, 0.555) 0.35vw 0.35vw 0;
+}
+
+#home-border {
+    position: absolute;
+    width: 50vw;
+    height: 75vh;
+    left: 25vw;
+    top: 15vh;
+    background: rgb(47, 190, 47);
+    border: beige 0.75vw solid;
+    z-index: 0;
+}
+
+#footer {
+    font-family: 'Fira Sans', sans-serif;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: absolute;
+    background-color: #222222;
+    width: 100%;
+    height: fit-content;
+    bottom: 0;
+    color: #f8f7ff;
+    text-align: center;
+    font-size: 1em;
+}
+
+#play-button {
+    font-family: 'Fira Sans', sans-serif;
+    width: fit-content;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 10vh;
+    color: beige;
+    z-index: 5;
+    background: transparent;
+    margin-top: 30vh;
+    font-weight: bold;
+    scale: 1;
+    transition: scale 0.5s;
+}
+
+#play-button:hover {
+    cursor: pointer;
+    scale: 1.2;
+}
+
+#play-button::after {
+    transition-duration: 1s;
+    z-index: 1;
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 8%;
+}
+
+#play-button:hover::after {
+    z-index: -1;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+#fader {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0;
+    display: none;
+    top: 0;
+    left: 0;
+}
+
+
+/* LEVEL SCREEN */
+
+
+#level-grid-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#menu-title {
+    flex-grow: 1;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 10vw;
+    width: fit-content;
+    height: 25vh;
+    background-color: rgb(38, 199, 92);
+    border: beige 0.5vw solid;
+}
+
+.level-icon {
+    width: 25vw;
+    height: 25vh;
+    background-color: rgb(38, 199, 92);
+    border: beige 0.5vw solid;
+}
+
+.level-title {
+    position: relative;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 2vw;
+    width: fit-content;
+    height: fit-content;
+    margin-top: 0;
+    margin-left: 0;
+    padding: 5px;
+    border-bottom: beige 0.35vw solid;
+    border-right: beige 0.35vw solid;
+    background-color: rgb(38, 199, 92);
+}
