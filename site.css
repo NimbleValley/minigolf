@@ -62,33 +62,62 @@ body {
     margin-top: 30vh;
     font-weight: bold;
     scale: 1;
-    transition: scale 0.5s;
+    transition: scale 0.5s, text-shadow 0.5s;
 }
 
 #play-button:hover {
     cursor: pointer;
     scale: 1.2;
+    text-shadow: rgba(0, 0, 0, 0.555) 0.25vw 0.25vw 0;
 }
 
-#play-button::after {
-    transition-duration: 1s;
-    z-index: 1;
+#pin-flag-hover {
+    transition-duration: 0.5s;
+    z-index: 100;
     position: absolute;
-    content: "";
     bottom: 0;
-    left: 0;
+    left: 2vw;
+    top: 3vh;
     width: 0%;
     height: 8%;
+    background-color: transparent;
+    color: transparent;
+    scale: 1 0.5;
+    border-top: 2vw solid transparent;
+    border-bottom: 2vw solid transparent;
+    border-left: 2vw solid transparent;
 }
 
-#play-button:hover::after {
-    z-index: -1;
-    background-color: rgb(255, 255, 255);
+#play-button:hover > #pin-flag-hover {
     position: absolute;
-    content: "";
+    border-top: 2vw solid transparent;
+    border-bottom: 2vw solid transparent;
+    border-left: 2vw solid rgb(192, 32, 32);
     bottom: 0;
-    left: 0;
-    width: 100%;
+    left: 0vw;
+    top: -2vh;
+    width: 0%;
+    height: 0%;
+    rotate: -15deg;
+}
+
+#pin-pole-hover {
+    transition-duration: 0.5s;
+    position: absolute;
+    width: 2%;
+    height: 75%;
+    background-color: transparent;
+    z-index: 1000;
+    left: 2vw;
+    top: 5vh;
+}
+
+#play-button:hover > #pin-pole-hover {
+    background-color: white;
+    left: 0vw;
+    top: 1vh;
+    rotate: -15deg;
+    box-shadow: rgba(0, 0, 0, 0.555) -0.15vw 0.2vw 0;
 }
 
 #fader {

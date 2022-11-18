@@ -12,7 +12,13 @@ tl.fromTo(homeBorder, 1, { y: "25vh", opacity: 0 }, { y: 0, ease: Power2.easeOut
 tl.fromTo(playButton, 1, { scale: 0.25, opacity: 0 }, { scale: 1, ease: Power2.easeOut, opacity: 1 },"-=0.5");
 tl.fromTo(footer, 1, { y: "5vh", opacity: 0 }, { y: 0, ease: Power2.easeOut, opacity: 1 }, "-=.75");
 
-function menuScreen() {
+async function toMenuScreen() {
     fader.style.display = "block";
     tl.fromTo(fader, 1, { x: "-100vw", opacity: 0 }, { x: 0, ease: Power2.easeOut, opacity: 1 });
+    await sleep(1000);
+    open("menu.html", "_self");
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
