@@ -1,7 +1,17 @@
 html,
 body {
-    background: green;
+    background: var(--color1);
     overflow: hidden;
+    margin: 0;
+}
+
+:root {
+    --color1: green;
+    --color2: rgb(47, 190, 47);
+    --color-water: rgb(0, 140, 255);
+    --color-bumper: yellow;
+    --color-ball: beige;
+    --color-hole: rgb(66, 63, 63);
 }
 
 #game-title {
@@ -13,15 +23,20 @@ body {
     font-size: 15vh;
     color: beige;
     z-index: 100;
-    background: transparent;
     margin-top: 7.5vh;
-    background-color: green;
+    background-color: var(--color1);
     padding-left: 2%;
     padding-right: 2%;
     border: beige 0.65vw solid;
     text-shadow: rgba(0, 0, 0, 0.555) 0.25vw 0.25vw 0;
     text-shadow: rgba(0, 0, 0, 0.555) 0.3vw 0.3vw 0;
     text-shadow: rgba(0, 0, 0, 0.555) 0.35vw 0.35vw 0;
+    transition: scale 0.4s;
+}
+
+#game-title:hover {
+    scale: 1.05;
+    cursor: default;
 }
 
 #home-border {
@@ -30,7 +45,7 @@ body {
     height: 75vh;
     left: 25vw;
     top: 15vh;
-    background: rgb(47, 190, 47);
+    background: var(--color2);
     border: beige 0.75vw solid;
     z-index: 0;
 }
@@ -88,7 +103,7 @@ body {
     border-left: 2vw solid transparent;
 }
 
-#play-button:hover > #pin-flag-hover {
+#play-button:hover>#pin-flag-hover {
     position: absolute;
     border-top: 2vw solid transparent;
     border-bottom: 2vw solid transparent;
@@ -112,7 +127,7 @@ body {
     top: 5vh;
 }
 
-#play-button:hover > #pin-pole-hover {
+#play-button:hover>#pin-pole-hover {
     background-color: white;
     left: 0vw;
     top: 1vh;
@@ -131,44 +146,279 @@ body {
     left: 0;
 }
 
+#fader-in {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 1;
+    display: none;
+    top: 0;
+    left: 0;
+    z-index: 100000;
+}
+
 
 /* LEVEL SCREEN */
 
 
-#level-grid-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
 #menu-title {
-    flex-grow: 1;
+    position: absolute;
     font-family: 'Fira Sans', sans-serif;
-    font-size: 10vw;
-    width: fit-content;
-    height: 25vh;
-    background-color: rgb(38, 199, 92);
-    border: beige 0.5vw solid;
-}
-
-.level-icon {
-    width: 25vw;
-    height: 25vh;
-    background-color: rgb(38, 199, 92);
-    border: beige 0.5vw solid;
-}
-
-.level-title {
-    position: relative;
-    font-family: 'Fira Sans', sans-serif;
-    font-size: 2vw;
+    font-size: 7.5vw;
     width: fit-content;
     height: fit-content;
-    margin-top: 0;
-    margin-left: 0;
-    padding: 5px;
-    border-bottom: beige 0.35vw solid;
-    border-right: beige 0.35vw solid;
-    background-color: rgb(38, 199, 92);
+    background-color: var(--color2);
+    color: beige;
+    text-shadow: rgba(0, 0, 0, 0.555) .5vw 0.5vw 0;
+    font-weight: bold;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    background-color: var(--color1);
+    border: beige 0.65vw solid;
+    z-index: 100;
+    margin-left: 2vw;
+    transition: scale 0.4s;
+}
+
+#menu-title:hover {
+    scale: 1.05;
+    cursor: default;
+}
+
+#level-container {
+    position: absolute;
+    background-color: var(--color2);
+    width: 90vw;
+    height: 80vh;
+    bottom: 5vh;
+    left: 5vw;
+    border: beige 0.65vw solid;
+    display: flex;
+    justify-content: space-around;
+}
+
+.course-icon {
+    position: relative;
+    width: 27%;
+    background-color: var(--color1);
+    height: 80%;
+    z-index: 5;
+    margin-top: 4%;
+    border: .5vw rgb(0, 0, 0) solid;
+    transition: scale 0.5s, box-shadow 0.5s;
+}
+
+.course-icon:hover {
+    box-shadow: rgba(0, 0, 0, 0.555) .5vw 0.5vw 0;
+    scale: 1.1;
+    cursor: pointer;
+}
+
+.course-description {
+    display: inline;
+    position: absolute;
+    margin: 0;
+    bottom: 0;
+    left: 0;
+    width: fit-content;
+    font-size: 3vw;
+    color: beige;
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: bold;
+    padding-left: 1vw;
+    transition: scale 0.5s, left 0.5s, text-shadow 0.5s, bottom 0.5s;
+}
+
+.course-icon:hover .course-description {
+    scale: 1.4;
+    left: 2vw;
+    bottom: 1vh;
+    text-shadow: rgba(0, 0, 0, 0.555) .25vw 0.25vw 0;
+}
+
+/* GAME */
+
+@media screen and (orientation: portrait) {
+    #center-game {
+        position: relative;
+        background-color: transparent;
+        width: 90vw;
+        height: 90vhw;
+        margin-top: 5vh;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 0;
+        padding: 0;
+    }
+}
+
+@media screen and (orientation:landscape) {
+    #center-game {
+        position: relative;
+        background-color: transparent;
+        width: 90vh;
+        height: 90vh;
+        margin-top: 5vh;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 0;
+        padding: 0;
+    }
+}
+
+#course-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.course-tile {
+    background-color: rgb(212, 0, 255);
+    width: 8.33%;
+    height: 8.33%;
+    border: none;
+    padding: 0;
+    gap: 0;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+    gap: 0;
+    padding: 0;
+    border-spacing: 0;
+}
+
+
+/* EDITER */
+
+
+.editer-button {
+    position: absolute;
+    font-size: 3vw;
+    border: beige 0.25vw solid;
+    color: beige;
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: bold;
+    padding: 1vh;
+    margin: 2vw;
+    background-color: #2222228f;
+    transition: scale 0.25s, background-color 0.25s;
+}
+
+.editer-button:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: rgb(26, 26, 26);
+}
+
+#undo-button {
+    margin-top: 9vw;
+}
+
+#save-button {
+    margin-top: 16vw;
+}
+
+#tile-key {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 1vw;
+    border: beige 0.25vw solid;
+    color: beige;
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: bold;
+    font-size: 3vw;
+    list-style: none;
+    text-shadow: rgba(0, 0, 0, 0.555) .25vw 0.25vw 0;
+    padding: 1vw;
+    background-color: #2222228f;
+    padding-left: 5vw;
+}
+
+#tile-key:hover {
+    cursor: pointer;
+}
+
+.tile-select {
+    transition: background-color 0.25s;
+    position: relative;
+}
+
+.tile-select::before {
+    content: "";
+    width: 3vw;
+    height: 3vw;
+    left: -4vw;
+    border: rgba(0, 0, 0, 0.61) 0.25vw solid;
+    position: absolute;
+}
+
+.tile-select:hover {
+    cursor: pointer;
+    background-color: #222222 !important;
+}
+
+#none-icon::before {
+    background-color: var(--color1);
+}
+
+#normal-icon::before {
+    background-color: var(--color2);
+}
+
+#water-icon::before {
+    background-color: var(--color-water);
+}
+
+#bumper-icon::before {
+    background-color: var(--color-bumper);
+    border-radius: 100000px;
+}
+
+#ball-icon::before {
+    background-color: var(--color-ball);
+    border-radius: 100000px;
+    scale: .5;
+}
+
+#hole-icon::before {
+    background-color: var(--color-hole);
+    border-radius: 100000px;
+    scale: .7;
+}
+
+.bumper {
+    width: 2.5vw;
+    height: 2.5vw;
+    background-color: var(--color-bumper);
+    position: absolute;
+    border-radius: 100000px;
+}
+
+#hole {
+    position: absolute;
+    width: 1.9vw;
+    height: 1.9vw;
+    background-color: var(--color-hole);
+    border-radius: 10000000px;
+}
+
+#ball {
+    position: absolute;
+    width: 1.25vw;
+    height: 1.25vw;
+    background-color: var(--color-ball);
+    border-radius: 10000000px;
+}
+
+#tester {
+    position: absolute;
+    width: 1vw;
+    height: 1vw;
+    background-color: red;
+    margin: 0;
+    padding: 0;
 }
