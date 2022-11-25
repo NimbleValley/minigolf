@@ -12,4 +12,9 @@ const fileSelector = document.getElementById('file-selector');
     formData.set("file", file);
     console.log(formData)
     window.localStorage.setItem('customCourse', fileList);
-  });
+});
+
+function startGame(course) {
+  window.localStorage.setItem('courseNumber', course);
+  open("game.html", "_self");
+}

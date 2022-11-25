@@ -59,8 +59,8 @@ for (let i = 0; i < cells.length; i++) {
             //Add Bumper
             if (width > height) {
                 var tempBumper = {
-                    x: (e.clientX - (width - (height * (9 / 10))) / 2) / (height * (9 / 10) / 100),
-                    y: ((e.clientY - (height * 5 / 100)) / (height * (9 / 10) / 100)),
+                    x: (e.clientX - (width * 0.0125) - (width - (height * (9 / 10))) / 2) / (height * (9 / 10) / 100),
+                    y: (e.clientY - (width * 0.0125) - (height * 5 / 100)) / (height * (9 / 10) / 100),
                     id: courseData.bumperData.length
                 }
             }
@@ -179,8 +179,8 @@ function updateBumpers() {
         courseContainer.appendChild(temp);
         temp.className = "bumper";
         temp.id = courseData.bumperData[i].id;
-        temp.style.left = `${(courseData.bumperData[i].x) - ((width * 0.0125) / width) * 100}%`;
-        temp.style.top = `${(courseData.bumperData[i].y) - ((width * 0.015) / width) * 100}%`;
+        temp.style.left = `${(courseData.bumperData[i].x)}%`;
+        temp.style.top = `${(courseData.bumperData[i].y)}%`;
     }
 }
 
@@ -220,3 +220,18 @@ function saveJsonFile() {
     a.click();
     a.remove();
 }
+
+function loadJsonFile() {
+    courseData
+}
+
+const fileSelector = document.getElementById("load-button");
+fileSelector.addEventListener('change', (event) => {
+    const reader = new FileReader();
+    const file = reader.readAsText(event.target.files[0]);
+    reader.onload = function () {
+        console.log(reader.result);
+        window.localStorage.setItem("courseData", reader.result);
+        window.location.reload();
+    }
+});

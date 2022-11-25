@@ -14,9 +14,7 @@
 
 <body>
     <!-- <div id = tester></div>-->
-    <div id="reset-editer" class="editer-button" onclick="resetData()">Reset Editer</div>
-    <div id="undo-button" class="editer-button" onclick="undo()">Undo Bumper</div>
-    <div id="save-button" class="editer-button" onClick="saveJsonFile()">Save File</div>
+
     <ul id="tile-key">
         <li class="tile-select" id="none-icon" onclick="setBrushType(0)">None</li>
         <li class="tile-select" id="normal-icon" onclick="setBrushType(1)">Course</li>
@@ -201,6 +199,12 @@
             </table>
         </div>
     </div>
+    <div id="reset-editer" class="editer-button" onclick="resetData()">Reset Editor</div>
+    <div id="undo-button" class="editer-button" onclick="undo()">Undo Bumper</div>
+    <input type="file" accept="application/JSON" id="load-button" class="editer-button" onClick="loadJsonFile()" hidden></input>
+    <label for="load-button" class="editer-button" id = "upload" editer-button>Load File</label>
+    <div id="save-button" class="editer-button" onClick="saveJsonFile()">Save File</div>
+    <div id="leave-button" class="editer-button">Leave Editor</div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js"></script>
