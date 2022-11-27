@@ -15,13 +15,18 @@
 <body>
     <div id="fader"></div>
     <div id="level-container">
-        <div class="course-icon" id=course1 onclick="startGame(1)">
-            <p class="course-description" onclick="">Test Course</p>
+        <div class="course-icon" id="course1" onclick="startGame(1)">
+            <p class="course-description" onclick="">Royal Flats</p>
         </div>
-        <div class="course-icon" id=custom-course onclick="window.location.href='editer.html';">
+        <div class="course-icon" id="course2" onclick="startGame(2)">
+            <p class="course-description" onclick="">Desert Dunes</p>
+        </div>
+        <div class="course-icon" id="create-course" onclick="window.location.href='editer.html';">
             <!--<input id = "file-selector" type = "file">-->
-            <p class="course-description" >Create Course</p>
+            <p class="course-description" >Create Hole</p>
         </div>
+        <input type="file" accept="application/JSON" id="custom-load-button" class="course-icon" hidden></input>
+        <label for="custom-load-button" class="course-icon" id = "custom-load-label" editer-button>Load Hole</label>
     </div>
     <div id="menu-title">Course Select</div>
 </body>

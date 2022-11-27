@@ -221,10 +221,6 @@ function saveJsonFile() {
     a.remove();
 }
 
-function loadJsonFile() {
-    courseData
-}
-
 const fileSelector = document.getElementById("load-button");
 fileSelector.addEventListener('change', (event) => {
     const reader = new FileReader();

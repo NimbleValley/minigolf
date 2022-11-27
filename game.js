@@ -90,14 +90,14 @@ var holeDone = false;
             }
 
             for (var i = 0; i < wallData[2].length; i++) {
-                if (Math.abs((ballY / 100 * (height * (9 / 10))) - wallData[2][i].y) < (width * 0.0025) && Math.abs((ballX / 100 * (height * (9 / 10))) - wallData[2][i].x) < ((height * (9 / 10)) / 12) && (ballX / 100 * (height * (9 / 10))) - wallData[2][i].x > 0) {
+                if (Math.abs((ballY / 100 * (height * (9 / 10))) - wallData[2][i].y) < (width * 0.0025) && Math.abs((ballX / 100 * (height * (9 / 10))) - wallData[2][i].x) < ((height * (9 / 10)) / 10) && (ballX / 100 * (height * (9 / 10))) - wallData[2][i].x > 0) {
                     //TOP
                     ballVelY = Math.abs(ballVelY) * 1;
                 }
             }
 
             for (var i = 0; i < wallData[3].length; i++) {
-                if (Math.abs(Math.abs((ballY / 100 * (height * (9 / 10))) - wallData[3][i].y + (height * 0.025))) < (width * 0.0025) && Math.abs((ballX / 100 * (height * (9 / 10))) - wallData[3][i].x) < ((height * (9 / 10)) / 12) && (ballX / 100 * (height * (9 / 10))) - wallData[3][i].x > 0) {
+                if (Math.abs(Math.abs((ballY / 100 * (height * (9 / 10))) - wallData[3][i].y + (height * 0.025))) < (width * 0.0025) && Math.abs((ballX / 100 * (height * (9 / 10))) - wallData[3][i].x) < ((height * (9 / 10)) / 10) && (ballX / 100 * (height * (9 / 10))) - wallData[3][i].x > 0) {
                     //BOTTOM
                     ballVelY = Math.abs(ballVelY) * -1;
                 }
@@ -170,14 +170,14 @@ function showScorecard() {
 
 async function startNextHole() {
     onHole++;
-    if (onHole < 6) {
+    if (onHole < totalHoles + 1) {
         nextHole.innerText = `Hole ${onHole}/5`;
     } else {
         nextHole.innerText = "Nice Job!"
     }
     await sleep(1000);
     tl.fromTo(nextHole, 1, { left: "-100vw", opacity: 0 }, { left: 0, ease: Power2.easeOut, opacity: 1 });
-    if (onHole < 6) {
+    if (onHole < totalHoles + 1) {
         await sleep(1000);
         courseData = holes[onHole - 1];
         updateTiles(courseData.tileData);

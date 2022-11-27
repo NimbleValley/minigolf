@@ -209,19 +209,63 @@ h1 {
     bottom: 5vh;
     left: 5vw;
     border: beige 0.65vw solid;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-row: auto auto;
+}
+
+#create-course::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("img/editor-icon.png");
+    filter: blur(1.5px) brightness(0.6);
+}
+
+#course1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("img/course1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(1.5px) brightness(0.6);
+}
+
+#course2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("img/course2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(1.5px) brightness(0.6);
 }
 
 .course-icon {
     position: relative;
-    width: 27%;
+    width: 80%;
+    margin: 10%;
     background-color: var(--color1);
     height: 80%;
     z-index: 5;
     margin-top: 4%;
     border: .5vw rgb(0, 0, 0) solid;
     transition: scale 0.5s, box-shadow 0.5s;
+    font-size: 300%;
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: bold;
+    color: beige;
+    text-shadow: #000000 0px 0px 10px;
 }
 
 .course-icon:hover {
@@ -231,18 +275,19 @@ h1 {
 }
 
 .course-description {
+    z-index: 100000;
     display: inline;
     position: absolute;
     margin: 0;
     bottom: 0;
     left: 0;
     width: fit-content;
-    font-size: 3vw;
     color: beige;
     font-family: 'Fira Sans', sans-serif;
     font-weight: bold;
     padding-left: 1vw;
     transition: scale 0.5s, left 0.5s, text-shadow 0.5s, bottom 0.5s;
+    text-shadow: #000000 0px 0px 10px;
 }
 
 .course-icon:hover .course-description {
@@ -341,7 +386,7 @@ table {
 }
 
 #scorecard:hover {
-    cursor:grab;
+    cursor: grab;
     background-color: #222222e3;
 }
 

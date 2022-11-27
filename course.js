@@ -1,5 +1,6 @@
 var cells = document.getElementsByTagName('td');
 var style = getComputedStyle(document.body);
+let root = document.documentElement;
 
 //const tester = document.getElementById("tester");
 
@@ -16,18 +17,40 @@ var holes = [];
 
 const showHitboxes = false;
 
-var courseNumber = localStorage.getItem("courseNumber");
-console.log(courseNumber);
+var totalHoles;
 
-for (var i = 0; i < 5; i++) {
-    fetch(`Course${courseNumber}Hole${i+1}.json`)
-        .then(Response => Response.json())
-        .then(data => {
-            holes.push(data);
-            courseData = holes[0];
-            updateTiles(courseData.tileData);
-            getBounds();
-        });
+var courseNumber = localStorage.getItem("courseNumber");
+
+if (courseNumber == 1) {
+    root.style.setProperty("--color1", "green");
+    root.style.setProperty("--color2", "rgb(47, 190, 47)");
+    root.style.setProperty("--color-water", "rgb(0, 140, 255)");
+    root.style.setProperty("--color-bumper", "yellow");
+} else if (courseNumber == 2) {
+    root.style.setProperty("--color1", "#d1be52");
+    root.style.setProperty("--color2", "#8eb851");
+    root.style.setProperty("--color-water", "#51b8b6");
+    root.style.setProperty("--color-bumper", "#125210");
+}
+
+if (courseNumber == 0) {
+    totalHoles = 1;
+    courseData = JSON.parse(localStorage.getItem("courseData"));
+    console.log(courseData);
+    updateTiles(courseData.tileData);
+    getBounds();
+} else {
+    totalHoles = 5;
+    for (var i = 0; i < totalHoles; i++) {
+        fetch(`Course${courseNumber}Hole${i + 1}.json`)
+            .then(Response => Response.json())
+            .then(data => {
+                holes.push(data);
+                courseData = holes[0];
+                updateTiles(courseData.tileData);
+                getBounds();
+            });
+    }
 }
 
 function updateTiles(data) {
@@ -119,6 +142,8 @@ function getBounds() {
         if (showHitboxes) {
             cells[i].style.outline = "black 0.01vw solid";
         }
+
+        //Left
         if (courseData.tileData[i] == 1) {
             if (courseData.tileData[i - 1] == 0) {
                 var temp = {
@@ -146,6 +171,7 @@ function getBounds() {
                 leftWalls.push(temp);
             }
 
+            //Right
             if (courseData.tileData[i + 1] == 0) {
                 var temp = {
                     x: (i % 12 + 0.65) / 12 * (height * (9 / 10)),
@@ -170,18 +196,20 @@ function getBounds() {
                 rightWalls.push(temp);
             }
 
-            if (courseData.tileData[i - 12] == 0) {
+            //Top
+            if (courseData.tileData[i - 12] == 0 || i < 12) {
                 var temp = {
-                    x: ((i % 12) - 0.125) / 12 * (height * (9 / 10)),
+                    x: ((i % 12) - 0.325) / 12 * (height * (9 / 10)),
                     y: ((i - i % 12) / 12) / 12 * (height * (9 / 10))
                 }
 
                 topWalls.push(temp);
             }
 
-            if (courseData.tileData[i + 12] == 0) {
+            //Bottom
+            if (courseData.tileData[i + 12] == 0 || i > 132) {
                 var temp = {
-                    x: ((i % 12) - 0.125) / 12 * (height * (9 / 10)),
+                    x: ((i % 12) - 0.325) / 12 * (height * (9 / 10)),
                     y: ((i - i % 12) / 12) / 12 * (height * (9 / 10)) + (height * 9 / 10 / 12)
                 }
 
@@ -190,11 +218,11 @@ function getBounds() {
                     test.className = "tester";
                     test.style = `
                     position: absolute;
-                    width: 5vh;
+                    width: ${(window.innerHeight * 9 / 10) / 10}px;
                     height: 1vw;
                     background-color: cyan;
                     margin: 0;
-                    left: ${(i % 12) / 12 * (height * (9 / 10))}px;
+                    left: ${((i % 12) - 0.325) / 12 * (height * (9 / 10))}px;
                     top: ${((i - i % 12) / 12) / 12 * (height * (9 / 10)) + (height * 9 / 10 / 12)}px;
                     padding: 0;`
                     courseContainer.appendChild(test);
